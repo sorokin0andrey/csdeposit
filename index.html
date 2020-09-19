@@ -1,81 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no"
-    />
-    <title>csdeposit - навечно</title>
-    <style>
-      html,
-      body {
-        margin: 0;
-        box-sizing: border-box;
-        color: #fff;
-        background-color: #000;
-      }
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui, user-scalable=no" />
+  <title>csdeposit - навечно</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      box-sizing: border-box;
+      color: #fff;
+      background-color: #000;
+    }
+
+    .content {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .inner {
+      position: relative;
+      margin-bottom: 200px;
+    }
+
+    .screenshot-container {
+      overflow: hidden;
+    }
+
+    .screenshot-container::after {
+      display: block;
+      content: " ";
+      width: 500px;
+      height: 80px;
+      background-color: #000;
+      position: absolute;
+      bottom: 0;
+      right: -100px;
+      transform: rotate(-40deg);
+    }
+
+    .screenshot {
+      max-width: 500px;
+    }
+
+    .torches-container {
+      position: absolute;
+      bottom: -150px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .torches-container img {
+      max-width: 100%;
+    }
+
+    h1 {
+      font-size: 64px;
+    }
+
+    #button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #000;
+    }
+
+    @media only screen and (max-width: 600px) {
       .content {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        transform: scale(0.5);
       }
+    }
+  </style>
+</head>
 
-      .inner {
-        position: relative;
-        margin-bottom: 200px;
-      }
-
-      .screenshot-container {
-        overflow: hidden;
-      }
-
-      .screenshot-container::after {
-        display: block;
-        content: " ";
-        width: 500px;
-        height: 80px;
-        background-color: #000;
-        position: absolute;
-        bottom: 0;
-        right: -100px;
-        transform: rotate(-40deg);
-      }
-
-      .screenshot {
-        max-width: 500px;
-      }
-
-      .torch {
-        position: absolute;
-        right: -130px;
-        bottom: -130px;
-      }
-
-      h1 {
-        font-size: 64px;
-      }
-
-      @media only screen and (max-width: 600px) {
-        .content {
-          transform: scale(0.5);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="content">
-      <div class="inner">
-        <div class="screenshot-container">
-          <img class="screenshot" src="./screenshot.png" />
-        </div>
-        <img class="torch" src="./torch.png" />
+<body id="body">
+  <div class="content">
+    <div class="inner">
+      <div class="screenshot-container">
+        <img class="screenshot" src="./screenshot.png" />
       </div>
-      <h1>Помним. Любим. Скорбим.</h1>
+      <div class="torches-container">
+        <img src="./torches.gif" />
+      </div>
     </div>
-  </body>
+    <h1>Помним. Любим. Скорбим.</h1>
+  </div>
+  <div id="button-container">
+    <button id="button">Войти в мемориал</button>
+  </div>
+  <audio src="./track.mp3" id="player"></audio>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("button");
+        const player = document.getElementById("player");
+        const overlay = document.getElementById("button-container");
+        button.onclick = () => {
+          player.play();
+          overlay.setAttribute("style", "display: none");
+        }
+      });
+    </script>
+</body>
+
 </html>
